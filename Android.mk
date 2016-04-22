@@ -32,10 +32,11 @@ LOCAL_SRC_FILES := \
 #    openbsd-compat/getrrsetbyname.c
 #    openbsd-compat/xcrypt.c 
 
-LOCAL_C_INCLUDES := external/openssl/include external/zlib
-PRIVATE_C_INCLUDES := external/openssl/openbsd-compat
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
+PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
 
-LOCAL_SHARED_LIBRARIES += libssl libcrypto libdl libz
+LOCAL_SHARED_LIBRARIES += libssl libcrypto libdl
+LOCAL_LDLIBS := -lz
 
 LOCAL_MODULE := libssh
 
@@ -54,13 +55,13 @@ LOCAL_SRC_FILES := \
     sshconnect.c sshconnect1.c sshconnect2.c mux.c \
     roaming_common.c roaming_client.c
 
-LOCAL_MODULE := ssh
+LOCAL_MODULE := _ssh
 
-LOCAL_C_INCLUDES := external/openssl/include
-PRIVATE_C_INCLUDES := external/openssl/openbsd-compat
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
+PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
 
-LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl libz
-
+LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl
+LOCAL_LDLIBS := -lz
 include $(BUILD_EXECUTABLE)
 
 ###################### sftp ######################
@@ -74,10 +75,11 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := sftp
 
-LOCAL_C_INCLUDES := external/openssl/include
-PRIVATE_C_INCLUDES := external/openssl/openbsd-compat
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
+PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
 
-LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl libz
+LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl
+LOCAL_LDLIBS := -lz
 
 include $(BUILD_EXECUTABLE)
 
@@ -92,10 +94,11 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := scp
 
-LOCAL_C_INCLUDES := external/openssl/include
-PRIVATE_C_INCLUDES := external/openssl/openbsd-compat
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
+PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
 
-LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl libz
+LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl
+LOCAL_LDLIBS := -lz
 
 include $(BUILD_EXECUTABLE)
 
@@ -126,10 +129,11 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := sshd
 
-LOCAL_C_INCLUDES := external/openssl/include external/zlib
-PRIVATE_C_INCLUDES := external/openssl/openbsd-compat
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
+PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
 
-LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl libz
+LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl
+LOCAL_LDLIBS := -lz
 
 include $(BUILD_EXECUTABLE)
 
@@ -144,10 +148,11 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := sftp-server
 
-LOCAL_C_INCLUDES := external/openssl/include
-PRIVATE_C_INCLUDES := external/openssl/openbsd-compat
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
+PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
 
-LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl libz
+LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl
+LOCAL_LDLIBS := -lz
 
 include $(BUILD_EXECUTABLE)
 
@@ -162,28 +167,10 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := ssh-keygen
 
-LOCAL_C_INCLUDES := external/openssl/include
-PRIVATE_C_INCLUDES := external/openssl/openbsd-compat
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
+PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
 
-LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl libz
+LOCAL_SHARED_LIBRARIES += libssh libssl libcrypto libdl
+LOCAL_LDLIBS := -lz
 
 include $(BUILD_EXECUTABLE)
-
-###################### sshd_config ######################
-
-include $(CLEAR_VARS)
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := sshd_config
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)/ssh
-LOCAL_SRC_FILES := sshd_config.android
-include $(BUILD_PREBUILT)
-
-###################### start-ssh ######################
-
-include $(CLEAR_VARS)
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := start-ssh
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_SRC_FILES := start-ssh
-include $(BUILD_PREBUILT)
