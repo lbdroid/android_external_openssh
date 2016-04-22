@@ -19,7 +19,7 @@ if [ ! -f $DSA_KEY ]; then
 fi
 
 if [ ! -f $RSA_KEY ]; then
-    /system/bin/ssh-keygen -t rsa -f $RSA_KEY -N ""
+    /data/bin/ssh-keygen -t rsa -f $RSA_KEY -N ""
     chmod 600 /$RSA_KEY
     chmod 644 $RSA_PUB_KEY
 fi
@@ -35,8 +35,8 @@ fi
 
 if [ "1" == "$DEBUG" ] ; then
     # run sshd in debug mode and capture output to logcat
-    /system/bin/logwrapper /system/bin/sshd -f /system/etc/ssh/sshd_config -D -d
+    /system/bin/logwrapper /data/bin/sshd -f /data/etc/ssh/sshd_config -D -d
 else
     # don't daemonize - otherwise we can't stop the sshd service
-    /system/bin/sshd -f /system/etc/ssh/sshd_config -D
+    /data/bin/sshd -f /data/ssh/sshd_config -D
 fi
