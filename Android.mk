@@ -34,6 +34,8 @@ LOCAL_SRC_FILES := \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
 PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
+LOCAL_CFLAGS += -fPIE
+LOCAL_LDFLAGS += -fPIE -pie
 
 LOCAL_SHARED_LIBRARIES += libdl
 #libssl.rb libcrypto.rb
@@ -61,6 +63,8 @@ LOCAL_MODULE := _ssh
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
 PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
+LOCAL_CFLAGS += -fPIE
+LOCAL_LDFLAGS += -fPIE -pie
 
 LOCAL_SHARED_LIBRARIES += libdl
 #libssh libssl.rb libcrypto.rb
@@ -81,6 +85,8 @@ LOCAL_MODULE := sftp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
 PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
+LOCAL_CFLAGS += -fPIE
+LOCAL_LDFLAGS += -fPIE -pie
 
 LOCAL_SHARED_LIBRARIES += libdl
 LOCAL_STATIC_LIBRARIES := libssh libssl_static libcrypto_static
@@ -101,6 +107,8 @@ LOCAL_MODULE := scp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
 PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
+LOCAL_CFLAGS += -fPIE
+LOCAL_LDFLAGS += -fPIE -pie
 
 LOCAL_SHARED_LIBRARIES += libdl
 LOCAL_STATIC_LIBRARIES := libssh libssl_static libcrypto_static
@@ -137,6 +145,8 @@ LOCAL_MODULE := sshd
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
 PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
+LOCAL_CFLAGS += -fPIE
+LOCAL_LDFLAGS += -fPIE -pie
 
 LOCAL_SHARED_LIBRARIES += libdl
 LOCAL_STATIC_LIBRARIES := libssh libssl_static libcrypto_static
@@ -157,6 +167,8 @@ LOCAL_MODULE := sftp-server
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
 PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
+LOCAL_CFLAGS += -fPIE
+LOCAL_LDFLAGS += -fPIE -pie
 
 LOCAL_SHARED_LIBRARIES += libdl
 LOCAL_STATIC_LIBRARIES := libssh libssl_static libcrypto_static
@@ -177,6 +189,8 @@ LOCAL_MODULE := ssh-keygen
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../openssl/include $(LOCAL_PATH)/include
 PRIVATE_C_INCLUDES := $(LOCAL_PATH)/../openssl/openbsd-compat $(LOCAL_PATH)/include
+LOCAL_CFLAGS += -fPIE
+LOCAL_LDFLAGS += -fPIE -pie
 
 LOCAL_SHARED_LIBRARIES += libdl
 LOCAL_STATIC_LIBRARIES := libssh libssl_static libcrypto_static
